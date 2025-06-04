@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tekrrgkejrjn</title>
+</head>
+<body>
+<p th:text="'Назва: ' + ${currentWorkplaceType.getName()}"></p>
+<a th:href="@{/workplace-types/{id}/edit(id=${currentWorkplaceType.getId()})}">Змінити</a>
+<form th:method="DELETE"
+      th:action="@{/workplace-types/{id}/delete(id=${currentWorkplaceType.getId()})}">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <input type="submit" value="Видалити">
+</form>
+</body>
+</html>

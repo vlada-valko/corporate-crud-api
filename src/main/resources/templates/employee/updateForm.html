@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Оновлення співробітника</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<form th:method="POST" th:action="@{/users/{id}(id=${oldUser.getId()})}" th:object="${oldUser}">
+    <input type="hidden" name="_method" value="PATCH"/>
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="username">username</label>
+    <input type="text" th:field="*{username}" id="username" />
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name of error</p>
+    <br/>
+
+    <label for="password">password</label>
+    <input type="password" th:field="*{password}" id="password" />
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name of error</p>
+    <br/>
+
+    <label for="lastName">Прізвище</label>
+    <input type="text" th:field="*{lastName}" id="lastName" />
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name of error</p>
+    <br/>
+
+    <label for="firstName">Ім'я</label>
+    <input type="text" th:field="*{firstName}" id="firstName" />
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name of error</p>
+    <br/>
+
+    <label for="middleName">По-батькові</label>
+    <input type="text" th:field="*{middleName}" id="middleName" />
+    <p th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Name of error</p>
+    <br/>
+
+    <p>Стать</p>
+    <select name="gender" id="gender" th:field="*{gender}">
+        <option th:each="gender : ${genders}" th:value="${gender.name()}" th:text="${gender.description}"></option>
+    </select>
+    <br/>
+
+    <p>Департамент</p>
+    <select name="department" id="department" th:field="*{department}">
+        <option th:each="department : ${departments}" th:value="${department.getId()}" th:text="${department.getName()}"></option>
+    </select>
+    <br/>
+
+    <p>Тип роботи/локація</p>
+    <select name="workplaceType" id="workplaceType" th:field="*{workplaceType}">
+        <option th:each="workplaceType : ${workplaceTypes}" th:value="${workplaceType.getId()}" th:text="${workplaceType.getName()}"></option>
+    </select>
+    <br/>
+
+    <label for="corporateMobile">Корпоративний мобільний</label>
+    <input type="tel" th:field="*{corporateMobile}" id="corporateMobile" placeholder="+380..." />
+    <p th:if="${#fields.hasErrors('corporateMobile')}" th:errors="*{corporateMobile}">Name of error</p>
+    <br/>
+
+    <label for="personalMobile">Особистий мобільний</label>
+    <input type="tel" th:field="*{personalMobile}" id="personalMobile" placeholder="+380..." />
+    <p th:if="${#fields.hasErrors('personalMobile')}" th:errors="*{personalMobile}">Name of error</p>
+    <br/>
+
+    <label for="internalPhone">Внутрішній телефон</label>
+    <input type="tel" th:field="*{internalPhone}" id="internalPhone" placeholder="+380..." />
+    <p th:if="${#fields.hasErrors('internalPhone')}" th:errors="*{internalPhone}">Name of error</p>
+    <br/>
+
+    <label for="dateOfBirth">Дата народження</label>
+    <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" placeholder="дд/мм/рррр" />
+    <p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Name of error</p>
+    <br/>
+
+    <label for="personalEmail">Особистий email</label>
+    <input type="email" th:field="*{personalEmail}" id="personalEmail" />
+    <p th:if="${#fields.hasErrors('personalEmail')}" th:errors="*{personalEmail}">Name of error</p>
+    <br/>
+
+    <label for="workEmail">Робочий email</label>
+    <input type="email" th:field="*{workEmail}" id="workEmail" />
+    <p th:if="${#fields.hasErrors('workEmail')}" th:errors="*{workEmail}">Name of error</p>
+    <br/>
+
+    <label for="residentialAddress">Адреса</label>
+    <input type="text" th:field="*{residentialAddress}" id="residentialAddress" />
+    <p th:if="${#fields.hasErrors('residentialAddress')}" th:errors="*{residentialAddress}">Name of error</p>
+    <br/>
+
+    <p>Роль</p>
+    <select name="role" id="role" th:field="*{role}">
+        <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.description}"></option>
+    </select>
+    <br/>
+
+    <input type="submit" value="Створити">
+</form>
+</body>
+</html>

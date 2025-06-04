@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div th:replace="fragments/header :: header"></div>-->
+
+<form th:method="POST" th:action="@{/workplace-types/{id}(id=${oldWorkplaceType.getId()})}" th:object="${oldWorkplaceType}">
+    <input type="hidden" name="_method" value="PATCH"/>
+    <label for="name">Назва департаменту</label>
+    <input type="text" th:field="*{name}" id="name" />
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name of error</p>
+    <br/>
+    <input type="submit" value="Створити">
+
+
+</form>
+</body>
+</html>

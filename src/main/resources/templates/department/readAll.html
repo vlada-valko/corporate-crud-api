@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+<p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+<p class="item_list__title"> Назва департаменту: </p>
+<div class="item_list" th:each="department : ${departments}">
+
+    <div class="item_list__item">
+        <a th:href="@{/departments/{id}(id = ${department.getId()})}"
+           th:text="${department.getName()}">
+        </a>
+        <a th:href="@{/departments/{id}/edit(id=${department.getId()})}">Змінити</a>
+        <form th:method="POST"
+              th:action="@{/departments/{id}/delete(id=${department.getId()})}">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <input type="submit" value="Видалити">
+        </form>
+    </div>
+</div>
+<a href="/departments/new">
+    Додати
+</a>
+</body>
+</html>

@@ -1,0 +1,92 @@
+
+<form th:method="POST" th:action="@{/employees}" th:object="${employeeDTO}" enctype="multipart/form-data">
+  <label for="photo">Фото:</label>
+  <input type="file" id="photo" th:field="*{photo}" name="file" accept="image/*" required />
+<br/>
+  <label for="lastName">Прізвище</label>
+  <input type="text" th:field="*{lastName}" id="lastName" />
+  <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name of error</p>
+  <p id="lastName-error" class="error-message"></p>
+  <br/>
+
+  <label for="firstName">Ім'я</label>
+  <input type="text" th:field="*{firstName}" id="firstName" />
+  <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name of error</p>
+  <p id="firstName-error" class="error-message"></p>
+  <br/>
+
+  <label for="middleName">По-батькові</label>
+  <input type="text" th:field="*{middleName}" id="middleName" />
+  <p th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Name of error</p>
+  <p id="middleName-error" class="error-message"></p>
+  <br/>
+
+  <p>Стать</p>
+  <select name="gender" id="gender" th:field="*{gender}">
+    <option th:each="gender : ${genders}"
+            th:value="${gender}"
+            th:text="${gender.description}"></option>
+  </select>
+
+  <p id="gender-error" class="error-message"></p>
+  <br/>
+
+  <p>Департамент</p>
+  <select name="department" id="department" th:field="*{department}">
+    <option th:each="department : ${departments}" th:value="${department.getId()}" th:text="${department.getName()}"></option>
+  </select>
+  <p id="department-error" class="error-message"></p>
+
+  <br/>
+
+  <p>Тип роботи/локація</p>
+  <select name="workplaceType" id="workplaceType" th:field="*{workplaceType}">
+    <option th:each="workplaceType : ${workplaceTypes}" th:value="${workplaceType.getId()}" th:text="${workplaceType.getName()}"></option>
+  </select>
+  <p id="workplaceType-error" class="error-message"></p>
+  <br/>
+
+  <label for="corporateMobile">Корпоративний мобільний</label>
+  <input type="tel" th:field="*{corporateMobile}" id="corporateMobile" placeholder="+380..." />
+  <p th:if="${#fields.hasErrors('corporateMobile')}" th:errors="*{corporateMobile}">Name of error</p>
+  <p id="corporateMobile-error" class="error-message"></p>
+  <br/>
+
+  <label for="personalMobile">Особистий мобільний</label>
+  <input type="tel" th:field="*{personalMobile}" id="personalMobile" placeholder="+380..." />
+  <p th:if="${#fields.hasErrors('personalMobile')}" th:errors="*{personalMobile}">Name of error</p>
+  <p id="personalMobile-error" class="error-message"></p>
+  <br/>
+
+  <label for="internalPhone">Внутрішній телефон</label>
+  <input type="tel" th:field="*{internalPhone}" id="internalPhone" placeholder="+380..." />
+  <p th:if="${#fields.hasErrors('internalPhone')}" th:errors="*{internalPhone}">Name of error</p>
+  <p id="internalPhone-error" class="error-message"></p>
+  <br/>
+
+  <label for="dateOfBirth">Дата народження</label>
+  <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" placeholder="дд/мм/рррр" />
+  <p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Name of error</p>
+  <p id="dateOfBirth-error" class="error-message"></p>
+  <br/>
+
+  <label for="personalEmail">Особистий email</label>
+  <input type="email" th:field="*{personalEmail}" id="personalEmail" />
+  <p th:if="${#fields.hasErrors('personalEmail')}" th:errors="*{personalEmail}">Name of error</p>
+  <p id="personalEmail-error" class="error-message"></p>
+  <br/>
+
+  <label for="workEmail">Робочий email</label>
+  <input type="email" th:field="*{workEmail}" id="workEmail" />
+  <p th:if="${#fields.hasErrors('workEmail')}" th:errors="*{workEmail}">Name of error</p>
+  <p id="workEmail-error" class="error-message"></p>
+  <br/>
+
+  <label for="residentialAddress">Адреса</label>
+  <input type="text" th:field="*{residentialAddress}" id="residentialAddress" />
+  <p th:if="${#fields.hasErrors('residentialAddress')}" th:errors="*{residentialAddress}">Name of error</p>
+  <p id="residentialAddress-error" class="error-message"></p>
+  <br/>
+  <input type="submit" value="Створити">
+</form>
+

@@ -1,0 +1,20 @@
+
+<form th:method="POST" th:action="@{/departments}" th:object="${departmentDTO}">
+  <label for="name">Назва департаменту:</label>
+  <input type="text" th:field="*{name}" id="name" />
+  <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name of error</p>
+  <p id="name-error" class="error-message"></p>
+  <br/>
+
+  <!-- TODO: add select only if employee is a manager -->
+  <p>Оберіть керівника департаменту:</p>
+  <select name="manager" id="manager" th:field="*{manager}">
+    <option th:each="manager : ${listOfEmployee}" th:value="${manager}" th:text="${manager.getFirstName()
+    + ' '
+    + manager.getLastName()}"></option>
+  </select>
+  <br/>
+
+  <input type="submit" value="Створити">
+</form>
+

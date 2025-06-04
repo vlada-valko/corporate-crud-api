@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+<p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+<p class="item_list__title"> Назва локації/типу роботи: </p>
+<div class="item_list" th:each="workplaceType : ${workplaceTypes}">
+
+    <div class="item_list__item">
+        <a th:href="@{/workplace-types/{id}(id = ${workplaceType.getId()})}"
+           th:text="${workplaceType.getName()}">
+        </a>
+        <a th:href="@{/workplace-types/{id}/edit(id=${workplaceType.getId()})}">Змінити</a>
+        <form th:method="POST"
+              th:action="@{/workplace-types/{id}/delete(id=${workplaceType.getId()})}">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <input type="submit" value="Видалити">
+        </form>
+    </div>
+</div>
+<a href="/workplace-types/new">
+    Додати
+</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tekrrgkejrjn</title>
+</head>
+<body>
+<p th:text="'ПІБ: ' + ${employee.getLastName() +
+            ' ' + employee.getFirstName() +
+             ' ' + employee.getMiddleName()}"></p>
+<p th:text="'Стать: ' + ${employee.getGender().getDescription()}"></p>
+<p th:if="${employee.getDepartment() != null and employee.getDepartment().getName() != null}"
+   th:text="'Департамент: ' + ${employee.getDepartment().getName()}"></p>
+<!--TODO Add manager and position -->
+<p th:if="${employee.getWorkplaceType() != null and employee.getWorkplaceType().getName() != null}"
+   th:text="'Тип роботи/локація: ' + ${employee.getWorkplaceType().getName()}"></p>
+
+<p th:if="${employee.getCorporateMobile() != null}"
+   th:text="'Корпоративний мобільний: ' + ${employee.getCorporateMobile()}"></p>
+
+<p th:if="${employee.getPersonalMobile() != null}"
+   th:text="'Особистий мобільний: ' + ${employee.getPersonalMobile()}"></p>
+
+<p th:if="${employee.getInternalPhone() != null}"
+   th:text="'Внутрішній телефон: ' + ${employee.getInternalPhone()}"></p>
+
+<p th:if="${employee.getDateOfBirth() != null}"
+   th:text="'Дата народження: ' + ${employee.getDateOfBirth()}"></p>
+
+<!-- Виведення фото -->
+<img th:if="${photoBase64 != null}"
+     th:src="'data:image/jpeg;base64,' + ${photoBase64}"
+     alt="Фото співробітника" id="employeePhoto" />
+
+
+</body>
+</html>

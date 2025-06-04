@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/departments/{id}(id=${oldDepartment.getId()})}" th:object="${oldDepartment}">
+    <input type="hidden" name="_method" value="PATCH"/>
+
+    <label for="name">Назва департаменту</label>
+    <input type="text" th:field="*{name}" id="name" />
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name of error</p>
+    <br/>
+
+    <label for="manager">Менеджер</label>
+    <select id="manager" th:field="*{manager.id}">
+        <option th:each="user : ${listOfUser}" th:value="${user.getId()}"
+                th:text="${user.getLastName() + ' ' + user.getFirstName() + ' ' + user.getMiddleName()}"
+                th:selected="${user.getId() == oldDepartment.manager?.id}"></option>
+    </select>
+
+
+    <input type="submit" value="Зберегти">
+</form>
+</body>
+</html>

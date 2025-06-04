@@ -1,0 +1,30 @@
+
+<form th:method="POST" th:action="@{/users}" th:object="${userDTO}">
+  <label for="username">Ім'я користувача:</label>
+  <input type="text" th:field="*{username}" id="username" />
+  <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name of error</p>
+  <p id="username-error" class="error-message"></p>
+
+  <br/>
+
+  <label for="password">Пароль:</label>
+  <input type="password" th:field="*{password}" id="password" />
+  <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name of error</p>
+  <p id="password-error" class="error-message"></p>
+  <br/>
+  <label for="password">Повторіть пароль:</label>
+  <input type="password" th:field="*{confirmPassword}" id="confirmPassword" />
+  <p th:if="${#fields.hasErrors('confirmPassword')}"
+     th:errors="*{confirmPassword}">Name of error</p>
+  <p id="confirmPassword-error" class="error-message"></p>
+  <br/>
+
+  <p>Оберіть роль:</p>
+  <select name="role" id="role" th:field="*{role}">
+    <option th:each="role : ${roles}" th:value="${role.getDescription()}" th:text="${role.description}"></option>
+  </select>
+  <p id="role-error" class="error-message"></p>
+  <br/>
+  <input type="submit" value="Створити">
+</form>
+

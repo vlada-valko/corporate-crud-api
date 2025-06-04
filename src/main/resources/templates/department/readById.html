@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tekrrgkejrjn</title>
+</head>
+<body>
+<p th:text="'Назва департаменту: ' + ${currentDepartment.getName()}"></p>
+<a th:href="@{/departments/{id}/users(id=${currentDepartment.getId()})}">Подивитись співробітників</a>
+<br/>
+<a th:href="@{/departments/{id}/edit(id=${currentDepartment.getId()})}">Змінити</a>
+<form th:method="DELETE"
+      th:action="@{/departments/{id}/delete(id=${currentDepartment.getId()})}">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <input type="submit" value="Видалити">
+</form>
+</body>
+</html>
